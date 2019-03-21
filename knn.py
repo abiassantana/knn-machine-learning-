@@ -49,10 +49,9 @@ class knn:
 
     def achar_tipo(self, kprimeiros):
         tipos = [0,0,0]
-        for i in range(len(kprimeiros)):
-            tipos[0] = kprimeiros.count(0)
-            tipos[1] = kprimeiros.count(1)
-            tipos[2] = kprimeiros.count(2)
+        tipos[0] = kprimeiros.count(0)
+        tipos[1] = kprimeiros.count(1)
+        tipos[2] = kprimeiros.count(2)
         return tipos.index(max(tipos))
 
     def escrever(self, arquivo, texto):
@@ -83,4 +82,4 @@ class knn:
         print('obteve '+str(self.precisao)+' de precisao para o K = '+str(k))  
             
 a = knn()
-a.knn('treinamento.csv', 'teste.csv', 'rotulos-teste.txt', 5)
+a.knn('treinamento.csv', 'teste.csv', 'rotulos-teste.txt', 3)
