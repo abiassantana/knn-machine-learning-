@@ -31,11 +31,9 @@ class knn:
         treinamento_distancia = deepcopy(self.dados_treinamento)
         teste = (entrada[0]-entrada[1]-entrada[2]-entrada[3])**2
         for i in range(len(treinamento_distancia)):
-            distancia0 = (treinamento_distancia[i][0]-entrada[0])**2
-            distancia1 = (treinamento_distancia[i][1]-entrada[1])**2
-            distancia2 = (treinamento_distancia[i][2]-entrada[2])**2
-            distancia3 = (treinamento_distancia[i][3]-entrada[3])**2
-            distancia = sqrt(distancia0+distancia1+distancia2+distancia3)
+            distancia = 0
+            for e in range(4):
+                distancia += (treinamento_distancia[i][e]-entrada[e])**2
             treinamento_distancia[i].append(distancia)
         return treinamento_distancia
         
@@ -70,7 +68,7 @@ class knn:
         for r in range(len(resposta)):
             if resposta[r] == resultado[r]:
                 count+=1
-        return count/(len(resposta)/100)
+        return count/float(len(resposta))*100
     
     def knn(self, treinamento, testes, respostas, k):
         self.dados_treinamento = self.gerar_dados(treinamento)
@@ -81,8 +79,8 @@ class knn:
             tipo = self.achar_tipo(menores)
             self.rotulos.append(tipo)
         self.escrever('resultado.txt', self.rotulos)
-        precisao = self.definir_precisao(respostas)
-        print('obteve '+str(precisao)+' de precisao para o K = '+str(k))  
+        self.precisao = self.definir_precisao(respostas)
+        print('obteve '+str(self.precisao)+' de precisao para o K = '+str(k))  
             
 a = knn()
-a.knn('treinamento.csv', 'teste.csv', 'rotulos-teste.txt', 11)
+a.knn('treinamento.csv', 'teste.csv', 'rotulos-teste.txt', 5)
