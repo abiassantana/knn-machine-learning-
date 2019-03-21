@@ -32,7 +32,7 @@ class knn:
         teste = (entrada[0]-entrada[1]-entrada[2]-entrada[3])**2
         for i in range(len(treinamento_distancia)):
             distancia = 0
-            for e in range(4):
+            for e in range(len(entrada)):
                 distancia += (treinamento_distancia[i][e]-entrada[e])**2
             treinamento_distancia[i].append(distancia)
         return treinamento_distancia
